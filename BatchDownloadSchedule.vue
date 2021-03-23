@@ -1,15 +1,15 @@
 <template>
     <div class="main-wrap" role="main">
-        <!-- 大園區水利工程及災害防汛資訊系統 -->
+        <!-- 八德區水利工程及災害防汛資訊系統 -->
         <div class="top_nav">
             <div class="nav_menu">
                 <nav class="nav navbar-nav">
                     <ul class="navbar-right">
                         <li class="nav-item">
-                            <img src="/Images/LOGO.png" style="width:30pt; height:30pt " />
+                            <img src="/Images/LOGO.png" style="width:80px; height:78px " />
                         </li>
                         <li class="nav-item">
-                            <h3>大園區水利工程及災害防汛資訊系統</h3>
+                            <h3>八德區水利工程及災害防汛資訊系統</h3>
                         </li>
                     </ul>
                 </nav>
@@ -18,7 +18,7 @@
         
         <div class="x_panel init-panel">
             <div class="main-title">
-                <h2>批次下載排程檢視</h2>
+                <h2>批次下載排程例表</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -35,7 +35,7 @@
                                     <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">開始時間</th>
                                     <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">結束時間</th>
                                     <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">轉檔來源</th>
-                                    <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">轉檔狀態</th>
+                                    <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">轉檔格式</th>
                                     <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">轉檔狀態</th>
                                     <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">下載</th>
                                 </tr>
