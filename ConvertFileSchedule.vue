@@ -18,11 +18,7 @@
         <div class="x_panel init-panel">
             <div class="main-title">
                 <h2>檔案轉檔排程例表</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                </ul>
+                <span class="main-title__line"></span>
             </div>
 
             <div class="x_content init-content">

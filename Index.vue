@@ -20,14 +20,30 @@
         <div class="main-select-wrap card init-panel">
             <div class="main-title">
                 <h2>排水檢測查詢</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link" data-card-widget="collapse" data-toggle="tooltip"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                </ul>
+                <span class="main-title__line"></span>
+                <a class="collapse-link" data-card-widget="collapse" data-toggle="tooltip"></a>
             </div>
             <div class="card-body init-content">
                 <form id="conditionForm" class="form-wrap form">
+                    <div class="form-btn-group form-btn-panel">
+                        <button type="button" class="btn btn-pie btn-size--sm" id="pieChartBtn" onclick="_showPieChart()">
+                            <span class="icon-pie"></span>
+                            圓餅圖分析
+                        </button>
+                        <button type="button" class="btn btn-pdf btn-size--sm" id="pdfChk" onclick="_downloadPDF()">
+                            <span class="icon-pdf"></span>
+                            PDF
+                        </button>
+                        <button type="button" class="btn btn-excel btn-size--sm" id="wordChk" onclick="_downloadExcel()">
+                            <span class="icon-excel"></span>
+                            Excel
+                        </button>
+                        <button type="button" class="btn btn-del btn-size--sm" id="deleteAllSelected" onclick="_deleteAllSelected()">
+                            <span class="icon-del"></span>
+                            刪除勾選
+                        </button>
+                    </div>
+
                     <div class="form-panel">
                         <div class="form-col form-col--100">
                             <label class="form-label" for="LocalDrainingSitesList">排水名稱</label>
@@ -109,8 +125,8 @@
                                 </select>
                             </div>
                         </div>
-
-                        <div class="form-btn-group">
+                    </div>
+                    <div class="form-btn-group">
                             <button id="showDataBtn" type="button" class="btn btn-view btn-size--md" onclick="_switchDisplayType()">
                                 <span class="icon-view"></span>
                                 資料檢示
@@ -128,32 +144,12 @@
                                 條件重設
                             </button>
                         </div>
-                    </div>
-
-                    <div class="form-btn-group form-btn-panel">
-                        <button type="button" class="btn btn-pie btn-size--sm" id="pieChartBtn" onclick="_showPieChart()">
-                            <span class="icon-pie"></span>
-                            圓餅圖分析
-                        </button>
-                        <button type="button" class="btn btn-pdf btn-size--sm" id="pdfChk" onclick="_downloadPDF()">
-                            <span class="icon-pdf"></span>
-                            PDF
-                        </button>
-                        <button type="button" class="btn btn-excel btn-size--sm" id="wordChk" onclick="_downloadExcel()">
-                            <span class="icon-excel"></span>
-                            Excel
-                        </button>
-                        <button type="button" class="btn btn-del btn-size--sm" id="deleteAllSelected" onclick="_deleteAllSelected()">
-                            <span class="icon-del"></span>
-                            刪除勾選
-                        </button>
-                    </div>
                 </form>
             </div>
         </div>
 
         <!-- 資料表顯示 -->
-        <div class="card" id="resultCard">
+        <div class="card" id="resultCard" style="display: none;">
             <div class="card-body">
                 <div id="searchResults" class="jsgrid data-panel Index-table" style="position: relative; height: auto; width: 100%;">
                     <!-- 資料表標題 -->
@@ -194,7 +190,7 @@
                                         <input type="hidden" class="inspectionID" value="107-02-178-00K000-L-01">
                                     </td>
                                     <td class="jsgrid-cell" style="width: 100px;">
-                                        <input type="button" class="btn btn-round btn-info" onclick="_showProfile(&quot;108-02-181-00K364-L-01&quot;)" value="顯示">
+                                        <input type="button" class="btn btn-round btn-info btn--xs" onclick="_showProfile(&quot;108-02-181-00K364-L-01&quot;)" value="顯示">
                                     </td>
                                     <td class="jsgrid-cell" style="width: 100px;">
                                         <button type="button" class="btn icon-wordc btn-icon" onclick="_downloadOneWord(&quot;107-02-178-00K000-L-01&quot;)">
@@ -214,7 +210,7 @@
             </div>
         </div>
         <!-- 地圖圖表顯示 -->
-        <div id="resultMap" class="x_panel map-container" style="display: none;">
+        <div id="resultMap" class="x_panel map-container">
             <div id="mapDiv" class="map-panel">
                 <div id="map" style="min-height:800px; height:100%"></div>
             </div>
@@ -229,6 +225,7 @@
                             <div class="list-unstyled-group">
                                 <label class="list-unstyled-label">
                                     <input type="checkbox" id="BADEZoneChk" class="icheckbox_flat layerBtn">
+                                    <span class="list-unstyled-style"></span>
                                     <span>八德區區界</span>
                                 </label>
                                 <span style="background-color: #DDAE2E;">■</span>
@@ -236,6 +233,7 @@
                             <div class="list-unstyled-group">
                                 <label class="list-unstyled-label">
                                     <input type="checkbox" id="BADEVillageChk" class="icheckbox_flat layerBtn">
+                                    <span class="list-unstyled-style"></span>
                                     <span>八德區村里界</span>
                                 </label>
                                 <span style="background-color: #D2B414;">■</span>
@@ -243,6 +241,7 @@
                             <div class="list-unstyled-group">
                                 <label class="list-unstyled-label">
                                     <input type="checkbox" class="icheckbox_flat layerBtn">
+                                    <span class="list-unstyled-style"></span>
                                     <span>八德其他排水圖資</span>
                                 </label>
                                 <span style="background-color: #369CFF;">■</span>
@@ -250,20 +249,23 @@
                             <div class="list-unstyled-group">
                                 <label class="list-unstyled-label">
                                     <input type="checkbox" class="icheckbox_flat layerBtn">
+                                    <span class="list-unstyled-style"></span>
                                     <span>河川圖資</span>
                                 </label>
                                 <span style="background-color: #F00014;">■</span>
                             </div>
                         </li>                            
                         <li class="list-unstyled-box-wrap">
-                            <label>
+                            <label class="list-unstyled-label">
                                 <input type="checkbox" class="icheckbox_flat layerBtn">
+                                <span class="list-unstyled-style"></span>
                                 <span>排水</span>
                             </label>
                             <div class="list-unstyled-box">
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn drainLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>公告區域排水圖資</span>
                                     </label>
                                     <span style="background-color: green;">■</span>
@@ -271,6 +273,7 @@
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn drainLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>非公告區域排水圖資</span>
                                     </label>
                                     <span style="background-color:darkgreen;">■</span>
@@ -278,14 +281,16 @@
                             </div>
                         </li>
                         <li class="list-unstyled-box-wrap">
-                            <label>
+                            <label class="list-unstyled-label">
                                 <input type="checkbox" class="icheckbox_flat layerBtn">
+                                <span class="list-unstyled-style"></span>
                                 <span>雨水竣工管線</span>
                             </label>
                             <div class="list-unstyled-box">
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn pipleLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>八德地區都市計畫_雨水竣工管線</span>
                                     </label>
                                     <span style="background-color: #FF8050;">■</span>
@@ -293,13 +298,15 @@
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn pipleLayer">
-                                        <span>大湳地區都市計畫_雨水竣工管線/span>
+                                        <span class="list-unstyled-style"></span>
+                                        <span>大湳地區都市計畫_雨水竣工管線</span>
                                     </label>
                                     <span style="background-color: #bc6276;">■</span>
                                 </div>
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn pipleLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>八德非都市計畫_雨水竣工管線</span>
                                     </label>
                                     <span style="background-color: #80ffff;">■</span>
@@ -307,14 +314,16 @@
                             </div>
                         </li>
                         <li class="list-unstyled-box-wrap">
-                            <label>
+                            <label class="list-unstyled-label">
                                 <input type="checkbox" class="icheckbox_flat layerBtn">
+                                <span class="list-unstyled-style"></span>
                                 <span>雨水竣工人孔</span>
                             </label>
                             <div class="list-unstyled-box">
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn rainLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>八德地區都市計畫_雨水竣工人孔</span>
                                     </label>
                                     <span style="background-color: #FF80C8;">■</span>
@@ -322,6 +331,7 @@
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn rainLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>大湳地區都市計畫_雨水竣工人孔</span>
                                     </label>
                                     <span style="background-color: #bcb276;">■</span>
@@ -329,6 +339,7 @@
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn rainLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>八德非都市計畫_雨水竣工人孔</span>
                                     </label>
                                     <span style="background-color: #c07a52;">■</span>
@@ -340,6 +351,7 @@
                             <div class="list-unstyled-group">
                                 <label class="list-unstyled-label">
                                     <input type="checkbox" class="icheckbox_flat layerBtn otherLayer">
+                                    <span class="list-unstyled-style"></span>
                                     <span>105_109其他排水清淤圖資</span>
                                 </label>
                                 <span style="background-color: #F07814;">■</span>
@@ -347,20 +359,23 @@
                             <div class="list-unstyled-group">
                                 <label class="list-unstyled-label">
                                     <input type="checkbox" class="icheckbox_flat layerBtn otherLayer">
+                                    <span class="list-unstyled-style"></span>
                                     <span>集水分區圖資</span>
                                 </label>
                                 <span style="background-color: #8080FF;">■</span>
                             </div>
                         </li> 
                         <li class="list-unstyled-box-wrap">
-                            <label>
+                            <label class="list-unstyled-label">
                                 <input type="checkbox" class="icheckbox_flat layerBtn">
+                                <span class="list-unstyled-style"></span>
                                 <span>農田水路</span>
                             </label>
                             <div class="list-unstyled-box">
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn fieldWaterLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>石門管理處-幹線</span>
                                     </label>
                                     <span style="background-color: #800000;">■</span>
@@ -368,6 +383,7 @@
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn fieldWaterLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>石門管理處-支線</span>
                                     </label>
                                     <span style="background-color: #805A00;">■</span>
@@ -375,6 +391,7 @@
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn fieldWaterLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>石門管理處-分線</span>
                                     </label>
                                     <span style="background-color: #805A6E;">■</span>
@@ -382,6 +399,7 @@
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn fieldWaterLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>桃園管理處-幹線</span>
                                     </label>
                                     <span style="background-color: #808000;">■</span>
@@ -389,6 +407,7 @@
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn fieldWaterLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>桃園管理處-支線</span>
                                     </label>
                                     <span style="background-color: #BCBC3C;">■</span>
@@ -396,6 +415,7 @@
                                 <div class="list-unstyled-group">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="icheckbox_flat layerBtn fieldWaterLayer">
+                                        <span class="list-unstyled-style"></span>
                                         <span>桃園管理處-分線</span>
                                     </label>
                                     <span style="background-color: #BA7E00;">■</span>
@@ -403,14 +423,16 @@
                             </div>
                         </li>
                         <li class="list-unstyled-box-wrap">
-                            <label>
+                            <label class="list-unstyled-label">
                                 <input type="checkbox" class="flat statusBtn">
+                                <span class="list-unstyled-style"></span>
                                 <span>呈現檢查結果</span>
                             </label>
                             <div class="list-unstyled-box">
                                 <div class="list-unstyled-group" id="status_1">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="flat statusBtn">
+                                        <span class="list-unstyled-style"></span>
                                         <span>正常</span>
                                     </label>
                                     <span style="background-color: green;border-radius:50%;">●</span>
@@ -418,6 +440,7 @@
                                 <div class="list-unstyled-group" id="status_2">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="flat statusBtn">
+                                        <span class="list-unstyled-style"></span>
                                         <span>計畫改善</span>
                                     </label>
                                     <span style="background-color: blue;border-radius:50%;">●</span>
@@ -425,6 +448,7 @@
                                 <div class="list-unstyled-group" id="status_3">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="flat statusBtn">
+                                        <span class="list-unstyled-style"></span>
                                         <span>注意改善</span>
                                     </label>
                                     <span style="background-color: yellow;border-radius:50%;">●</span>
@@ -432,6 +456,7 @@
                                 <div class="list-unstyled-group" id="status_4">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="flat statusBtn">
+                                        <span class="list-unstyled-style"></span>
                                         <span>立即改善</span>
                                     </label>
                                     <span style="background-color: red;border-radius:50%;">●</span>
@@ -439,6 +464,7 @@
                                 <div class="list-unstyled-group" id="status_5">
                                     <label class="list-unstyled-label">
                                         <input type="checkbox" class="flat statusBtn">
+                                        <span class="list-unstyled-style"></span>
                                         <span>改善後正常</span>
                                     </label>
                                     <span style="background-color: grey;border-radius:50%;">●</span>
