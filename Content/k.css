@@ -4,7 +4,9 @@ body { min-width: 1200px; }
 
 .init-title { border-bottom: none; padding: 0; margin-bottom: 0; }
 
-.file-panel { background-color: #fff; padding: 36px 18px; border-radius: 18px; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; margin-bottom: 24px; }
+.file-panel { background-color: #f6f6f6; padding: 36px 18px; border-radius: 18px; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; margin-bottom: 24px; }
+
+.file-panel .form-control { height: auto; }
 
 .init-content { float: none; margin-top: 0; padding: 0; }
 

@@ -17,12 +17,15 @@ body {
 	margin-bottom: 0;
 }
 .file-panel {
-	background-color: #fff;
+	background-color: #f6f6f6;
 	padding: 36px 18px;
 	border-radius: 18px;
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 24px;
+	.form-control {
+		height: auto;
+	}
 }
 .init-content {
 	float: none;

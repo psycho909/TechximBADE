@@ -18,11 +18,8 @@
         <div class="x_panel init-panel">
             <div class="main-title">
                 <h2>區域排水資料上傳</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                </ul>
+                <span class="main-title__line"></span>
+                <a class="collapse-link" data-card-widget="collapse" data-toggle="tooltip"></a>
             </div>
 
             <div class="x_content init-content">
