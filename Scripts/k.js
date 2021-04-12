@@ -1,6 +1,5 @@
 $(".area-toggle__btn").on("click", function () {
 	if ($(".area-panel").length) {
-		console.log(1);
 		$(".area-panel").toggleClass("hide");
 	}
 	if ($(".fault-panel").length) {
